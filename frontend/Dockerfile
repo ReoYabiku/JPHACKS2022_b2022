@@ -1,2 +1,5 @@
 FROM node:16-alpine
-WORKDIR /app
+RUN mkdir /frontend
+WORKDIR /usr/src/frontend
+
+COPY . /usr/src/frontend
