@@ -14,4 +14,4 @@ JPHACKSに向けて開発中の初心者向け機械学習コード生成ツー�
 [http://integral.pythonanywhere.com/](http://integral.pythonanywhere.com/)
 
 ### frontend
-[http://jphacks-2022-b2022.vercel.app](http://jphacks-2022-b2022.vercel.app)
+[http://jphacks-2022-b2212.vercel.app](http://jphacks-2022-b2212.vercel.app)
