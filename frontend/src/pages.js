@@ -1,5 +1,6 @@
 import React from "react";
 import logo from './logo.svg';
+import ApiFetch from "./ApiFetch";
 
 export function Home() {
     return (
@@ -7,6 +8,14 @@ export function Home() {
             <h1>[Home]</h1>
         </div>
     );
+}
+
+export function Api() {
+	return (
+		<div>
+			<ApiFetch />
+		</div>
+	);
 }
 
 export function Top() {
