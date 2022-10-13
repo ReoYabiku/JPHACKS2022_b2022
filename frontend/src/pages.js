@@ -1,12 +1,21 @@
 import React from "react";
 import logo from './logo.svg';
+import SampleAdd from "./SampleAdd";
 
 export function Home() {
-    return (
-        <div>
-            <h1>[Home]</h1>
-        </div>
-    );
+	return (
+		<div>
+			<h1>[Home]</h1>
+		</div>
+	);
+}
+
+export function FireBase() {
+	return (
+		<div>
+			<SampleAdd />
+		</div>
+	);
 }
 
 export function Top() {
