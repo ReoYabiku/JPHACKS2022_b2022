@@ -4,11 +4,10 @@ export default function ApiFetch() {
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		fetch('https://5000-reoyabiku-jphacks2022b2-lnszc5vtb6o.ws-us70.gitpod.io/', {method: 'GET'})
-		.then(res => {
-			setPosts(res);
-			console.log("-------------------------------------");
-			console.log(res);
+		fetch('http://localhost:5000', {method: 'GET'})
+		.then(res => res.json())
+		.then(data => {
+			setPosts(data)
 		})
 	}, [])
 
@@ -16,7 +15,7 @@ export default function ApiFetch() {
 	return (
 		<div>
 			<ul>
-				{posts.map((post, i) => <li key={i}>{post}</li>)}
+				{posts.map(post => <li key={post.id}>{post.title}</li>)}
 			</ul>
 		</div>
 	);
