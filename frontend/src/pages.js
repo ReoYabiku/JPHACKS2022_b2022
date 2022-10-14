@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import logo from './logo.svg';
-import AddForm from "./AddForm";
-import GetAllUsers from "./GetAllUsers";
+import AddForm from "./components/AddForm";
+import Users from "./components/Users";
 
 export function Home() {
 	return (
@@ -29,10 +29,10 @@ export function Add() {
 	);
 }
 
-export function Get() {
+export function Show() {
 	return (
 		<div>
-			<GetAllUsers />
+			<Users />
 		</div>
 	);
 }

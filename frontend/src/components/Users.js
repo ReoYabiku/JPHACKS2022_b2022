@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import User from "./User";
-import db from "./firebase";
+import db from "../database/firebase";
 
-export default function GetAllUsers() {
+export default function Users() {
   const [users, setUsers] = useState([]);
 
   var usersRef = db.collection("users");

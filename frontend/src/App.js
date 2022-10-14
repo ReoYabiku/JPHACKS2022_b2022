@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import { Home, Top, FireStore, Add, Get } from "./pages";
+import { Home, Top, FireStore, Add, Show } from "./pages";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Route path="top" element={<Top />} />
         <Route path="firestore" element={<FireStore />}>
           <Route path="add" element={<Add />} />
-          <Route path="get" element={<Get />} />
+          <Route path="show" element={<Show />} />
         </Route>
       </Routes>
     </div>
