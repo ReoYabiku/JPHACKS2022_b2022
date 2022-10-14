@@ -1,6 +1,8 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import logo from './logo.svg';
-import SampleAdd from "./SampleAdd";
+import AddForm from "./AddForm";
+import GetAllUsers from "./GetAllUsers";
 
 export function Home() {
 	return (
@@ -10,10 +12,27 @@ export function Home() {
 	);
 }
 
-export function FireBase() {
+export function FireStore() {
 	return (
 		<div>
-			<SampleAdd />
+			<h1>[FireStore]</h1>
+			<Outlet />
+		</div>
+	);
+}
+
+export function Add() {
+	return (
+		<div>
+			<AddForm />
+		</div>
+	);
+}
+
+export function Get() {
+	return (
+		<div>
+			<GetAllUsers />
 		</div>
 	);
 }

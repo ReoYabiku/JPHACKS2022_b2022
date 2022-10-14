@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { AddUser } from "./DB";
 
-export default function SampleAdd() {
+export default function AddForm() {
   const txtName = useRef();
   const intAge = useRef();
   const txtSex = useRef();
