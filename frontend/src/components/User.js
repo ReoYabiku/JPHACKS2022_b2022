@@ -3,7 +3,7 @@ import "./User.css";
 
 export default function User({name, age, sex}) {
   return (
-    <div class="user">
+    <div className="user">
       <p>name: {name}</p>
       <p>age: {age}</p>
       <p>sex: {sex}</p>
