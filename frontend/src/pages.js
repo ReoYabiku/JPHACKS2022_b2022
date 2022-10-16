@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import logo from './logo.svg';
 import AddForm from "./components/AddForm";
 import Users from "./components/Users";
+import ApiFetch from "./ApiFetch";
 
 export function Home() {
 	return (
@@ -33,6 +34,14 @@ export function Show() {
 	return (
 		<div>
 			<Users />
+		</div>
+	);
+}
+
+export function Api() {
+	return (
+		<div>
+			<ApiFetch />
 		</div>
 	);
 }
