@@ -43,4 +43,4 @@ REACT_APP_BACKEND_URL = 'http://localhost:5000'
 
 #### 手動デプロイ
 [手動デプロイ用エンドポイント](https://api.vercel.com/v1/integrations/deploy/prj_4IndLAl5bwpfaoPKfx8uEc4fzJh9/P5juMy9FdM)を叩くことでリデプロイできる
-** 叩くとデプロイが始まります **
+**叩くとデプロイが始まります**
