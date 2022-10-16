@@ -20,10 +20,10 @@ REACT_APP_BACKEND_URL = 'http://localhost:5000'
 
 ## production
 ### backend
-[http://integral.pythonanywhere.com/](http://integral.pythonanywhere.com/)
+[https://integral.pythonanywhere.com/](https://integral.pythonanywhere.com/)
 
 ### frontend
-[http://jphacks-2022-b2212.vercel.app](http://jphacks-2022-b2212.vercel.app)
+[https://jphacks-2022-b2212.vercel.app](https://jphacks-2022-b2212.vercel.app)
 
 ## how to deploy
 
@@ -43,3 +43,4 @@ REACT_APP_BACKEND_URL = 'http://localhost:5000'
 
 #### 手動デプロイ
 [手動デプロイ用エンドポイント](https://api.vercel.com/v1/integrations/deploy/prj_4IndLAl5bwpfaoPKfx8uEc4fzJh9/P5juMy9FdM)を叩くことでリデプロイできる
+** 叩くとデプロイが始まります **
