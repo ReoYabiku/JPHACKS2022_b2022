@@ -4,3 +4,4 @@ WORKDIR /usr/src/app
 ENV FLASK_APP=app
 
 RUN pip install Flask
+RUN pip install flask-cors
