@@ -17,9 +17,6 @@ export default function ApiFetch() {
 			<ul>
 				{posts.map(post => <li key={post.id}>{post.title}</li>)}
 			</ul>
-			<dev>
-				{process.env.REACT_APP_BACKEND_URL}
-			</dev>
 		</div>
 	);
 }
