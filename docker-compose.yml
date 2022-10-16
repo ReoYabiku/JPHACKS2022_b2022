@@ -18,3 +18,5 @@ services:
     volumes:
       - ./frontend:/usr/src/frontend
     command: npm start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
