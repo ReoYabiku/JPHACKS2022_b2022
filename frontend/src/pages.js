@@ -1,13 +1,41 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import logo from './logo.svg';
+import AddForm from "./components/AddForm";
+import Users from "./components/Users";
 import ApiFetch from "./ApiFetch";
 
 export function Home() {
-    return (
-        <div>
-            <h1>[Home]</h1>
-        </div>
-    );
+	return (
+		<div>
+			<h1>[Home]</h1>
+		</div>
+	);
+}
+
+export function FireStore() {
+	return (
+		<div>
+			<h1>[FireStore]</h1>
+			<Outlet />
+		</div>
+	);
+}
+
+export function Add() {
+	return (
+		<div>
+			<AddForm />
+		</div>
+	);
+}
+
+export function Show() {
+	return (
+		<div>
+			<Users />
+		</div>
+	);
 }
 
 export function Api() {
