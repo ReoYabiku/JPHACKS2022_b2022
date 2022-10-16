@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import { Home, Top, FireStore, Add, Show } from "./pages";
+import { Home, Top, Api, FireStore, Add, Show } from "./pages";
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="top" element={<Top />} />
+        <Route path="api" element={<Api />} />
         <Route path="firestore" element={<FireStore />}>
           <Route path="add" element={<Add />} />
           <Route path="show" element={<Show />} />
