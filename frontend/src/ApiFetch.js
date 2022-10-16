@@ -4,7 +4,7 @@ export default function ApiFetch() {
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:5000', {method: 'GET'})
+		fetch(process.env.REACT_APP_BACKEND_URL, {method: 'GET'})
 		.then(res => res.json())
 		.then(data => {
 			setPosts(data)
