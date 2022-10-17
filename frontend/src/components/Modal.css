@@ -16,3 +16,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.removeWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.removeBtn {
+  padding: 0;
+}

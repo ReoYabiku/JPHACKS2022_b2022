@@ -11,7 +11,9 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = f
       showModal ? (
         <div className="overlay">
           <div className="modalContent">
-            <div onClick={removeModal}>X</div>
+            <div className="removeWrapper">
+              <div className="removeBtn" onClick={removeModal}>X</div>
+            </div>
             {codes.map((code, i) => <p key={i}>{code}</p>)}
           </div>
         </div>
