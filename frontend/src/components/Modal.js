@@ -14,8 +14,11 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = f
   };
   
   const copyTextToClipboard = () => {
-    console.log(codes);
     navigator.clipboard.writeText(codes.join("\n"));
+    document.getElementsByClassName("notifyCopy")[0].style.display = "block";
+    setTimeout(() => {
+      document.getElementsByClassName("notifyCopy")[0].style.display = "none";
+    }, 1000);
   };
   
   useEffect(() => {
@@ -28,20 +31,25 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = f
   return (
     <>{
       showModal ? (
-        <div className="overlay">
-          <div className="modalContent">
-            <div className="btnWrapper">
-              <div className="removeBtn" onClick={removeModal}>
-                <TiDeleteOutline size={"2rem"} />
+        <>
+          <div className="overlay">
+            <div className="modalContent">
+              <div className="btnWrapper">
+                <div className="removeBtn" onClick={removeModal}>
+                  <TiDeleteOutline size={"2rem"} />
+                </div>
+              </div>
+              <textarea id="textarea" cols={100} rows={20}>
+              </textarea>
+              <div className="btnWrapper">
+                <div className="copyBtn" onClick={copyTextToClipboard}>Copy</div>
               </div>
             </div>
-            <textarea id="textarea" cols={100} rows={20}>
-            </textarea>
-            <div className="btnWrapper">
-              <div className="copyBtn" onClick={copyTextToClipboard}>Copy</div>
-            </div>
           </div>
-        </div>
+          <div className="container">
+            <div className="notifyCopy">クリップボードにコピーしました！</div>
+          </div>
+        </>
       ) : (
         <></>
       )
