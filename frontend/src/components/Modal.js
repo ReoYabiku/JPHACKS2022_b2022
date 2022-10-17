@@ -6,6 +6,12 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = f
   const removeModal = () => {
     setShowModal(false);
   };
+
+  document.onclick = (e) => {
+    if (e.target.closest(".modalContent") === null){
+      removeModal()
+    }
+  };
   
   const copyTextToClipboard = () => {
     console.log(codes);
