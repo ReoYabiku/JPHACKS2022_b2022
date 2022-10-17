@@ -1,14 +1,11 @@
 from flask import *
 from flask_cors import CORS
 
-# import json
-
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/", methods=["GET"])
 def hello_world():
-    # return json.dumps([{"message":"Hello, World!"}], indent=2)
     json = {
         "users":[
             {
@@ -25,5 +22,14 @@ def hello_world():
     }
     return jsonify(json["users"])
 
-# fetch('http://localhost:5000').then(res => res.json()).then(data => console.log(data["users"]))
-# でアクセスできる
+@app.route("/sample-code", methods=["GET"])
+def sample_code():
+    json = {
+        "codes":[
+            "## 必要なライブラリをインポートする",
+            "import numpy as np",
+            "import pandas as pd",
+            "import lightgbm as lgbm"
+        ]
+    }
+    return jsonify(json)
