@@ -4,12 +4,11 @@ import logo from './logo.svg';
 import AddForm from "./components/organisms/AddForm";
 import Users from "./components/organisms/Users";
 import ApiFetch from "./ApiFetch";
+import Steps from "./components/organisms/Steps";
 
 export function Home() {
 	return (
-		<div>
-			<h1>[Home]</h1>
-		</div>
+		<Steps />
 	);
 }
 
