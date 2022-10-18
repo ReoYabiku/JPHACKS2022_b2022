@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import urlJoin from "url-join";
 import Modal from "./Modal";
+import Button from "./Button";
 
 export default function GenButton() {
   const [codes, setCodes] = useState(["hoge", "fuga"]);
@@ -20,11 +21,9 @@ export default function GenButton() {
   };
 
   return (
-    <div>
-      <form onSubmit={generate}>
-        <button>Generate</button>
-      </form>
+    <>
+      <Button onSubmit={generate} btnValue="Generate" />
       <Modal showModal={showModal} setShowModal={setShowModal} codes={codes}/>
-    </div>
+    </>
   );
 }
