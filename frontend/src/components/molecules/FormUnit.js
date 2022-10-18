@@ -4,21 +4,22 @@ import "./FormUnit.css";
 import Modal from "../organisms/Modal";
 import urlJoin from "url-join";
 
-export default function FormUnit({inputTexts=[], submitValue=""}) {
+export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
   const [codes, setCodes] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   const generate = e => {
     e.preventDefault();
-    const formElements = document.forms.dataframe;
-    const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, "dataframe");
+    const formElements = document.forms[endpointPath];
+    const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, endpointPath);
+    const json = {};
+    inputTexts.forEach(inputText => {
+      json[inputText.name] = formElements[inputText.name].value;
+    });
     const requestOptions = {
       method: "POST",
       referrerPolicy: 'no-referrer',
-      body: JSON.stringify({
-        train: formElements.train.value,
-        test: formElements.test.value
-      })
+      body: JSON.stringify(json)
     };
     fetch(endpoint, requestOptions)
     .then(res => res.json())
@@ -30,7 +31,7 @@ export default function FormUnit({inputTexts=[], submitValue=""}) {
 
   return (
     <>
-      <form className="form-unit" name="dataframe" onSubmit={generate}>
+      <form className="form-unit" name={endpointPath} onSubmit={generate}>
         <div className="form-content">
           {
           inputTexts.map((inputText, i) => {
