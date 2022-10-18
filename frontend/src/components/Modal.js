@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import DeleteButtonRightside from "./DeleteButtonRightside";
+import CopyButton from "./CopyButton";
 import "./Modal.css";
-import { TiDeleteOutline } from "react-icons/ti";
 
 export default function Modal({showModal = true, setShowModal= f => f, codes = f => f}) {
   const removeModal = () => {
@@ -34,16 +35,9 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = f
         <>
           <div className="overlay">
             <div className="modalContent">
-              <div className="btnWrapper">
-                <div className="removeBtn" onClick={removeModal}>
-                  <TiDeleteOutline size={"2rem"} />
-                </div>
-              </div>
-              <textarea id="textarea" cols={100} rows={20}>
-              </textarea>
-              <div className="btnWrapper">
-                <div className="copyBtn" onClick={copyTextToClipboard}>Copy</div>
-              </div>
+              <DeleteButtonRightside onClick={removeModal} />
+              <textarea id="textarea" cols={100} rows={20}></textarea>
+              <CopyButton onClick={copyTextToClipboard} />
             </div>
           </div>
           <div className="container">

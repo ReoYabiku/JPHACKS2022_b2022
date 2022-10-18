@@ -17,24 +17,6 @@
   justify-content: center;
 }
 
-.btnWrapper {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.removeBtn {
-  padding: 0;
-  cursor: pointer;
-}
-
-.copyBtn {
-  padding: 3px;
-  background-color: darkslateblue;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .container {
   position: fixed;
   top: 50%;
