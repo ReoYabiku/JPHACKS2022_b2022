@@ -9,6 +9,7 @@ import PathForm from "./components/organisms/PathForm";
 import VisualizeForm from "./components/organisms/VisualizeForm";
 import PreprocessingForm from "./components/organisms/PreprocessingForm";
 import ModelForm from "./components/organisms/ModelForm";
+import PredictForm from "./components/organisms/PredictForm";
 
 export function Home() {
 	return (
@@ -42,7 +43,7 @@ export function Model() {
 
 export function Predict() {
 	return (
-		<h1>[Predict]</h1>
+		<PredictForm />
 	);
 }
 
