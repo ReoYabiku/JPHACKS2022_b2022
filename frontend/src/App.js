@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import { Home, Top, Api, FireStore, Add, Show } from "./pages";
-import GenButton from './components/GenButton';
+import GenButton from './components/atoms/GenButton';
 
 function App() {
   return (

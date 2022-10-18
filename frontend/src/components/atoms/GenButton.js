@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import urlJoin from "url-join";
-import Modal from "./Modal";
+import Modal from "../organisms/Modal";
 import Button from "./Button";
 
 export default function GenButton() {

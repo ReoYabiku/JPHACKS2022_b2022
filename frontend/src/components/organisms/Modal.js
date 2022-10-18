@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import DeleteButtonRightside from "./DeleteButtonRightside";
-import CopyButton from "./CopyButton";
+import DeleteButtonRightside from "../atoms/DeleteButtonRightside";
+import CopyButton from "../atoms/CopyButton";
 import "./Modal.css";
 
 export default function Modal({showModal = true, setShowModal= f => f, codes = f => f}) {

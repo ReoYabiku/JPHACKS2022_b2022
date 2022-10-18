@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import logo from './logo.svg';
-import AddForm from "./components/AddForm";
-import Users from "./components/Users";
+import AddForm from "./components/organisms/AddForm";
+import Users from "./components/organisms/Users";
 import ApiFetch from "./ApiFetch";
 
 export function Home() {

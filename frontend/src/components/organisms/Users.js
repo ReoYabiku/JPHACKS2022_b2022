@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import User from "./User";
-import db from "../database/firebase";
+import User from "../atoms/User";
+import db from "../../database/firebase";
 
 export default function Users() {
   const [users, setUsers] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { AddUser } from "../database/DBGateway";
+import { AddUser } from "../../database/DBGateway";
 
 export default function AddForm() {
   const txtName = useRef();
