@@ -104,6 +104,18 @@ def model():
     }
     return jsonify(json)
 
+@app.route("/predict", methods=["POST"])
+def predict():
+    req = ast.literal_eval(request.get_data().decode('utf-8'))
+    json = {
+        "codes":[
+            "## csvファイルの作成",
+            "sub = pd.concat([id, pred], axis=1)",
+            "sub.to_csv('{}', index=False)".format(req["submission"])
+        ]
+    }
+    return jsonify(json)
+
 @app.route("/tmp", methods=["POST"])
 def tmp():
     json = {
