@@ -8,6 +8,8 @@ import Steps from "./components/organisms/Steps";
 import PathForm from "./components/organisms/PathForm";
 import VisualizeForm from "./components/organisms/VisualizeForm";
 import PreprocessingForm from "./components/organisms/PreprocessingForm";
+import ModelForm from "./components/organisms/ModelForm";
+import PredictForm from "./components/organisms/PredictForm";
 
 export function Home() {
 	return (
@@ -35,13 +37,13 @@ export function Preprocessing() {
 
 export function Model() {
 	return (
-		<h1>[Model]</h1>
+		<ModelForm />
 	);
 }
 
 export function Predict() {
 	return (
-		<h1>[Predict]</h1>
+		<PredictForm />
 	);
 }
 
