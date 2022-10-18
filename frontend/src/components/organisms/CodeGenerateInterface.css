@@ -1,17 +1,18 @@
-.set-path-container {
+.each-step-container {
   margin: 50px auto 30px;
 }
 
-.set-path-title {
+.each-step-title {
   width: 30%;
   margin: 0 auto;
 }
 
-.set-path-sentense {
+.each-step-sentense {
   margin: 0 auto;
+  text-align: center;
 }
 
-.set-path-wrapper {
+.each-step-wrapper {
   width: 50%;
   margin: 20px auto;
 }

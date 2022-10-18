@@ -6,6 +6,7 @@ import Users from "./components/organisms/Users";
 import ApiFetch from "./ApiFetch";
 import Steps from "./components/organisms/Steps";
 import PathForm from "./components/organisms/PathForm";
+import PreprocessingForm from "./components/organisms/PreprocessingForm";
 
 export function Home() {
 	return (
@@ -27,7 +28,7 @@ export function Visualize() {
 
 export function Preprocessing() {
 	return (
-		<h1>[Preprocessing]</h1>
+		<PreprocessingForm />
 	);
 }
 
