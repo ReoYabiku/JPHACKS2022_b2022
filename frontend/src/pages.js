@@ -25,6 +25,24 @@ export function Visualize() {
 	);
 }
 
+export function Preprocessing() {
+	return (
+		<h1>[Preprocessing]</h1>
+	);
+}
+
+export function Model() {
+	return (
+		<h1>[Model]</h1>
+	);
+}
+
+export function Predict() {
+	return (
+		<h1>[Predict]</h1>
+	);
+}
+
 export function FireStore() {
 	return (
 		<div>
