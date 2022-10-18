@@ -20,7 +20,7 @@ export default function PreprocessingForm() {
       sentenses={sentenses}
       inputTexts={inputTexts}
       nextPath="/model"
-      endpointPath="/model"
+      endpointPath="/preprocessing"
     />
   );
 }

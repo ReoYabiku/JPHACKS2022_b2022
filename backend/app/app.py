@@ -81,3 +81,12 @@ def preprocessing():
         ]
     }
     return jsonify(json)
+
+@app.route("/tmp", methods=["POST"])
+def tmp():
+    json = {
+        "codes":[
+            "この機能はまだ利用できません。"
+        ]
+    }
+    return jsonify(json)
