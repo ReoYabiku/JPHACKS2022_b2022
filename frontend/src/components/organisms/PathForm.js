@@ -1,11 +1,8 @@
 import React from "react";
-import StepTitle from "../atoms/StepTitle";
-import "./PathForm.css";
-import FormUnit from "../molecules/FormUnit";
-import ButtonLink from "../atoms/ButtonLink";
+import CodeGerenateInterface from "./CodeGenerateInterface";
 
 export default function PathForm() {
-  const step = {path:"/set_path", imgPath:"DataQuality.png", num:1, value:"データファイルの指定"};
+  const step = {imgPath:"DataQuality.png", num:1, value:"データファイルの指定"};
   const sentenses = [
     "はじめに、trainデータとtestデータが位置するパスを指定します。",
     "実行ファイルからtrain, testデータへの相対パスを記入してください。",
@@ -18,17 +15,14 @@ export default function PathForm() {
   ];
 
   return (
-    <div className="set-path-container">
-      <div className="set-path-title">
-        <StepTitle imgPath={step.imgPath} num={step.num} value={step.value} />
-      </div>
-      <div className="set-path-wrapper">
-        {sentenses.map((sentense, i) => <p className="set-path-sentense" key={i}>{sentense}</p>)}
-        <FormUnit inputTexts={inputTexts} submitValue="コードを生成" />
-      </div>
-      <div className="next-button">
-        <ButtonLink path="/visualize" value="次へ進む" />
-      </div>
-    </div>
+    <CodeGerenateInterface
+      imgPath={step.imgPath}
+      num={step.num}
+      value={step.value}
+      sentenses={sentenses}
+      inputTexts={inputTexts}
+      nextPath="/visualize"
+      endpointPath="dataframe"
+    />
   );
 }
