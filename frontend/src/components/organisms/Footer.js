@@ -25,8 +25,12 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-sns">
-        <a href="https://twitter.com/percentaction7"><FaTwitter color="white" size={"1.5em"} style={{padding: "0 5px"}} /></a>
-        <a href="/instagram_of_mi-chan"><FaInstagram color="white" size={"1.5em"} style={{padding: "0 5px"}} /></a>
+        <a href="https://twitter.com/percentaction7">
+          <FaTwitter color="white" size={"1.5em"} style={{padding: "0 5px"}} />
+        </a>
+        <a href="/instagram_of_mi-chan">
+          <FaInstagram color="white" size={"1.5em"} style={{padding: "0 5px"}} />
+        </a>
       </div>
       <div className="footer-copy-right">©コクリ created by JPHACKS2022</div>
     </div>
