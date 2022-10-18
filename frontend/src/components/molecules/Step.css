@@ -2,39 +2,9 @@
   width: 30%;
   margin: 10px 15%;
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
+  
   border: 2px solid black;
   border-radius: 10px;
   vertical-align: middle;
-
   text-decoration: none;
-  color: black;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.step-container p {
-  margin: auto 0;
-}
-
-.step-title {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.step-number {
-  color: black;
-  font-weight: bold;
-  padding-left: 15px;
-}
-
-.step-sentense {
-  display: flex;
-  width: 100%;
-}
-
-.step-sentense p {
-  margin: auto;
 }

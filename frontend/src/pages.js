@@ -5,10 +5,17 @@ import AddForm from "./components/organisms/AddForm";
 import Users from "./components/organisms/Users";
 import ApiFetch from "./ApiFetch";
 import Steps from "./components/organisms/Steps";
+import PathForm from "./components/organisms/PathForm";
 
 export function Home() {
 	return (
 		<Steps />
+	);
+}
+
+export function SetPath() {
+	return (
+		<PathForm />
 	);
 }
 
