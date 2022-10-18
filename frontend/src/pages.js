@@ -5,10 +5,41 @@ import AddForm from "./components/organisms/AddForm";
 import Users from "./components/organisms/Users";
 import ApiFetch from "./ApiFetch";
 import Steps from "./components/organisms/Steps";
+import PathForm from "./components/organisms/PathForm";
 
 export function Home() {
 	return (
 		<Steps />
+	);
+}
+
+export function SetPath() {
+	return (
+		<PathForm />
+	);
+}
+
+export function Visualize() {
+	return (
+		<h1>[Visualize]</h1>
+	);
+}
+
+export function Preprocessing() {
+	return (
+		<h1>[Preprocessing]</h1>
+	);
+}
+
+export function Model() {
+	return (
+		<h1>[Model]</h1>
+	);
+}
+
+export function Predict() {
+	return (
+		<h1>[Predict]</h1>
 	);
 }
 
