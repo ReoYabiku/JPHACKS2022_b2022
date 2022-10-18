@@ -14,7 +14,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="footer-container">
+    <footer className="footer-container">
       <div className="footer-main">
         <div className="footer-logo">
           <Logo />
@@ -33,6 +33,6 @@ export default function Footer() {
         </a>
       </div>
       <div className="footer-copy-right">©コクリ created by JPHACKS2022</div>
-    </div>
+    </footer>
   );
 }

@@ -5,9 +5,9 @@ import Navigation from "../molecules/Navigation";
 
 export default function Header() {
   return (
-    <div className="header-container">
+    <header className="header-container">
       <Logo />
       <Navigation />
-    </div>
+    </header>
   );
 }
