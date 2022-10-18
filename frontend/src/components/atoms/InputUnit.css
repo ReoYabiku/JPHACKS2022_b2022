@@ -1,0 +1,10 @@
+.text-label {
+  font-size: 13px;
+}
+
+.text-box {
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
