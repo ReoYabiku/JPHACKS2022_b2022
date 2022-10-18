@@ -19,6 +19,12 @@ export function SetPath() {
 	);
 }
 
+export function Visualize() {
+	return (
+		<h1>[Visualize]</h1>
+	);
+}
+
 export function FireStore() {
 	return (
 		<div>

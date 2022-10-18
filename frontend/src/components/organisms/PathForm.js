@@ -2,6 +2,7 @@ import React from "react";
 import StepTitle from "../atoms/StepTitle";
 import "./PathForm.css";
 import FormUnit from "../molecules/FormUnit";
+import ButtonLink from "../atoms/ButtonLink";
 
 export default function PathForm() {
   const step = {path:"/set_path", imgPath:"DataQuality.png", num:1, value:"データファイルの指定"};
@@ -12,8 +13,8 @@ export default function PathForm() {
     "jupyterなどのノートブックに貼り付けて実行してください。"
   ];
   const inputTexts = [
-    {label: "trainファイルへの相対パス", value: "./data/train.csv"},
-    {label: "testファイルへの相対パス", value: "./data/test.csv"}
+    {label: "trainファイルへの相対パス", value: "./data/train.csv", name: "train"},
+    {label: "testファイルへの相対パス", value: "./data/test.csv",name: "test"}
   ];
 
   return (
@@ -24,6 +25,9 @@ export default function PathForm() {
       <div className="set-path-wrapper">
         {sentenses.map((sentense, i) => <p className="set-path-sentense" key={i}>{sentense}</p>)}
         <FormUnit inputTexts={inputTexts} submitValue="コードを生成" />
+      </div>
+      <div className="next-button">
+        <ButtonLink path="/visualize" value="次へ進む" />
       </div>
     </div>
   );

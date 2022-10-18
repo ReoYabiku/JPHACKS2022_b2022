@@ -15,3 +15,9 @@
   width: 50%;
   margin: 20px auto;
 }
+
+.next-button {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
