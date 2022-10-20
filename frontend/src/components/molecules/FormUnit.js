@@ -2,19 +2,28 @@ import React, { useState } from "react";
 import InputUnit from "../atoms/InputUnit";
 import "./FormUnit.css";
 import Modal from "../organisms/Modal";
+import CheckBoxUnit from "../atoms/CheckBoxUnit";
 import urlJoin from "url-join";
 
 export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
   const [codes, setCodes] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  // TODO: オブジェクトから要素数を指定する
+  const [checkedList, setCheckedList] = useState([false, false]);
+
   const generate = e => {
     e.preventDefault();
     const formElements = document.forms[endpointPath];
     const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, endpointPath);
     const json = {};
-    inputTexts.forEach(inputText => {
-      json[inputText.name] = formElements[inputText.name].value;
+    inputTexts.forEach((inputText, i) => {
+      if (checkedList[i] && inputText.textExists) {
+        json[inputText.text.name] = formElements[inputText.text.name].value;
+        json[inputText.checkbox.name] = "true";
+      } else {
+        json[inputText.checkbox.name] = "false";
+      }
     });
     const requestOptions = {
       method: "POST",
@@ -36,12 +45,17 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           {
           inputTexts.map((inputText, i) => {
             return (
-              <InputUnit
-                key={i}
-                name={inputText.name}
-                label={inputText.label}
-                value={inputText.value}
-              />
+              <div key={i}>
+                <CheckBoxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />
+                {checkedList[i] && inputText.textExists ?
+                  <InputUnit
+                    name={inputText.text.name}
+                    label={inputText.text.label}
+                    value={inputText.text.value}
+                  /> :
+                  <></>
+                }
+              </div>
             );
           })
           }
