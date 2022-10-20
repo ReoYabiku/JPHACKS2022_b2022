@@ -18,7 +18,7 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
     const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, endpointPath);
     const json = {};
     inputTexts.forEach(inputText => {
-      json[inputText.name] = formElements[inputText.name].value;
+      json[inputText.text.name] = formElements[inputText.text.name].value;
     });
     const requestOptions = {
       method: "POST",
