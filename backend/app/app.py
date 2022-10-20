@@ -78,17 +78,33 @@ def preprocessing():
                 one_hot_column_set += "', "
             else:
                 one_hot_column_set += "'"
+    
+    codes = []
+    if req["normalColumnsExist"] == "true" and req["oneHotColumnsExist"] == "false":
+        codes = [
+            "## カラムを限定する",
+            "df = df.loc[: ,[{}]]".format(normal_column_set),
+        ]
+    elif req["normalColumnsExist"] == "false" and req["oneHotColumnsExist"] == "true":
+        codes = [
+            "## one-hotエンコーディング",
+            "df = pd.get_dummies(df.loc[:, [{}]])".format(one_hot_column_set),
+        ]
+    elif req["normalColumnsExist"] == "true" and req["oneHotColumnsExist"] == "true":
+        codes = [
+            "## カラムの限定とone-hotエンコーディング",
+            "df_part = df_.loc[: ,[{}]]".format(normal_column_set),
+            "df_dummy = pd.get_dummies(df.loc[:, [{}]])".format(one_hot_column_set),
+            "df = pd.concat([df_part, df_dummy], axis=1)"
+        ]
 
     json = {
         "codes":[
             "## 全データテーブルの作成",
             "N_train = len(train)",
-            "df_all = pd.concat([train, test], axis=0)",
+            "df = pd.concat([train, test], axis=0)",
             "",
-            "## カラムの限定とone-hotエンコーディング",
-            "df_part = df_all.loc[: ,[{}]]".format(normal_column_set),
-            "df_dummy = pd.get_dummies(df_all.loc[:, [{}]])".format(one_hot_column_set),
-            "df = pd.concat([df_part, df_dummy], axis=1)"
+            *codes,
         ]
     }
     return jsonify(json)
