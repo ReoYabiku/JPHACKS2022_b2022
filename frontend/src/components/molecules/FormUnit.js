@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputUnit from "../atoms/InputUnit";
 import "./FormUnit.css";
 import Modal from "../organisms/Modal";
-import CheckBoxUnit from "../atoms/CheckBoxUnit";
+import CheckboxUnit from "../atoms/CheckboxUnit";
 import urlJoin from "url-join";
 
 export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
@@ -53,7 +53,7 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           inputTexts.map((inputText, i) => {
             return (
               <div key={i}>
-                {inputText.checkboxExists && <CheckBoxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
+                {inputText.checkboxExists && <CheckboxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
                 {checkedList[i] && inputText.textExists ?
                   <InputUnit
                     name={inputText.text.name}
