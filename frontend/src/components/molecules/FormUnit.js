@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import InputUnit from "../atoms/InputUnit";
 import "./FormUnit.css";
 import Modal from "../organisms/Modal";
+import CheckBoxUnit from "../atoms/CheckBoxUnit";
 import urlJoin from "url-join";
 
 export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
   const [codes, setCodes] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  // TODO: オブジェクトから要素数を指定する
+  const [checkedList, setCheckedList] = useState([false, false]);
 
   const generate = e => {
     e.preventDefault();
@@ -36,12 +40,17 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           {
           inputTexts.map((inputText, i) => {
             return (
-              <InputUnit
-                key={i}
-                name={inputText.name}
-                label={inputText.label}
-                value={inputText.value}
-              />
+              <div key={i}>
+                <CheckBoxUnit id={i} checkedList={checkedList} labelText={"テキスト"} setCheckedList={setCheckedList} />
+                {checkedList[i] ?
+                  <InputUnit
+                    name={inputText.name}
+                    label={inputText.label}
+                    value={inputText.value}
+                  /> :
+                  <></>
+                }
+              </div>
             );
           })
           }
