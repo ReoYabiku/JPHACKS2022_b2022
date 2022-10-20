@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputUnit from "../atoms/InputUnit";
 import "./FormUnit.css";
 import Modal from "../organisms/Modal";
-import CheckBoxUnit from "../atoms/CheckBoxUnit";
+import CheckboxUnit from "../atoms/CheckboxUnit";
 import urlJoin from "url-join";
 
 export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
@@ -10,7 +10,8 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
   const [showModal, setShowModal] = useState(false);
 
   // TODO: オブジェクトから要素数を指定する
-  const [checkedList, setCheckedList] = useState([false, false]);
+  const defaultCheckList = inputTexts.map(inputText => !inputText.checkboxExists);
+  const [checkedList, setCheckedList] = useState(defaultCheckList);
 
   const generate = e => {
     e.preventDefault();
@@ -20,10 +21,16 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
     inputTexts.forEach((inputText, i) => {
       if (checkedList[i] && inputText.textExists) {
         json[inputText.text.name] = formElements[inputText.text.name].value;
-        json[inputText.checkbox.name] = "true";
-      } else {
-        json[inputText.checkbox.name] = "false";
       }
+
+      if (inputText.checkboxExists){
+        if(checkedList[i] && inputText.textExists){
+          json[inputText.checkbox.name] = "true";
+        } else {
+          json[inputText.checkbox.name] = "false";
+        }
+      }
+      
     });
     const requestOptions = {
       method: "POST",
@@ -46,7 +53,7 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           inputTexts.map((inputText, i) => {
             return (
               <div key={i}>
-                <CheckBoxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />
+                {inputText.checkboxExists && <CheckboxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
                 {checkedList[i] && inputText.textExists ?
                   <InputUnit
                     name={inputText.text.name}

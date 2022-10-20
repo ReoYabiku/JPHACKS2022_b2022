@@ -9,11 +9,13 @@ export default function PreprocessingForm() {
   ];
   const inputTexts = [
     {
+      checkboxExists: true,
       checkbox: {label: "そのまま使うカラムがある", name: "normalColumnsExist"},
       textExists: true,
       text: {label: "そのまま利用するカラム", value: "カラム名1, カラム名2", name: "normalColumns"}
     },
     {
+      checkboxExists: true,
       checkbox: {label: "One-Hotエンコーディングする", name: "oneHotColumnsExist"},
       textExists: true,
       text: {label: "One-Hotエンコーディングするカラム", value: "カラム名1, カラム名2", name: "oneHotColumns"}

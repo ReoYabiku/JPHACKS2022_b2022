@@ -8,7 +8,11 @@ export default function PredictForm() {
     "CSVファイルを出力するパスを指定してください。"
   ];
   const inputTexts = [
-    {label: "提出ファイルのパス", value: "./submission/lgbm.csv", name: "submission"}
+    {
+      checkboxExists: false,
+      textExists: true,
+      text: {label: "提出ファイルのパス", value: "./submission/lgbm.csv", name: "submission"}
+    }
   ];
 
   return (

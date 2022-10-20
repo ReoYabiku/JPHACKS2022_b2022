@@ -8,8 +8,16 @@ export default function ModelForm() {
     "提出ファイルの主キー（表現変える）と予測するカラムを入力してください。"
   ];
   const inputTexts = [
-    {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"},
-    {label: "予測するカラムの名前", value: "Survived",name: "target"}
+    {
+      checkboxExists: false,
+      textExists: true,
+      text: {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"}
+    },
+    {
+      checkboxExists: false,
+      textExists: true,
+      text: {label: "予測するカラムの名前", value: "Survived",name: "target"}
+    }
   ];
 
   return (

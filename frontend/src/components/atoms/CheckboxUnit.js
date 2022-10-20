@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CheckBoxUnit({id=0, checkedList=[], labelText="", setCheckedList=f=>f}) {
+export default function CheckboxUnit({id=0, checkedList=[], labelText="", setCheckedList=f=>f}) {
   const onChange = e => {
     checkedList.splice(id, 1, e.target.checked);
     setCheckedList([...checkedList]);
