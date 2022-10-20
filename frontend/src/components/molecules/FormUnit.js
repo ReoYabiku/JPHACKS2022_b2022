@@ -41,12 +41,12 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           inputTexts.map((inputText, i) => {
             return (
               <div key={i}>
-                <CheckBoxUnit id={i} checkedList={checkedList} labelText={"テキスト"} setCheckedList={setCheckedList} />
-                {checkedList[i] ?
+                <CheckBoxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />
+                {checkedList[i] && inputText.textExists ?
                   <InputUnit
-                    name={inputText.name}
-                    label={inputText.label}
-                    value={inputText.value}
+                    name={inputText.text.name}
+                    label={inputText.text.label}
+                    value={inputText.text.value}
                   /> :
                   <></>
                 }
