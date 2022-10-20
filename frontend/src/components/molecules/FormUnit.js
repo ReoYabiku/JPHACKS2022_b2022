@@ -17,8 +17,13 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
     const formElements = document.forms[endpointPath];
     const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, endpointPath);
     const json = {};
-    inputTexts.forEach(inputText => {
-      json[inputText.text.name] = formElements[inputText.text.name].value;
+    inputTexts.forEach((inputText, i) => {
+      if (checkedList[i] && inputText.textExists) {
+        json[inputText.text.name] = formElements[inputText.text.name].value;
+        json[inputText.checkbox.name] = "true";
+      } else {
+        json[inputText.checkbox.name] = "false";
+      }
     });
     const requestOptions = {
       method: "POST",

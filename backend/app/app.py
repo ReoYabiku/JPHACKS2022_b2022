@@ -54,24 +54,31 @@ def dataframe():
 @app.route("/preprocessing", methods=["POST"])
 def preprocessing():
     req = ast.literal_eval(request.get_data().decode('utf-8'))
-    normal_columns = re.split(', *', req["normalColumns"])
+
     normal_column_set = ""
-    for i, column in enumerate(normal_columns):
-        normal_column_set += "'"
-        normal_column_set += column
-        if i != len(normal_columns) - 1:
-            normal_column_set += "', "
-        else:
+    if req["normalColumnsExist"] == "true":
+        normal_columns = re.split(', *', req["normalColumns"])
+        # normal_column_set = ""
+        for i, column in enumerate(normal_columns):
             normal_column_set += "'"
-    one_hot_columns = re.split(', *', req["oneHotColumns"])
+            normal_column_set += column
+            if i != len(normal_columns) - 1:
+                normal_column_set += "', "
+            else:
+                normal_column_set += "'"
+
     one_hot_column_set = ""
-    for i, column in enumerate(one_hot_columns):
-        one_hot_column_set += "'"
-        one_hot_column_set += column
-        if i != len(one_hot_columns) - 1:
-            one_hot_column_set += "', "
-        else:
+    if req["oneHotColumnsExist"] == "true":
+        one_hot_columns = re.split(', *', req["oneHotColumns"])
+        # one_hot_column_set = ""
+        for i, column in enumerate(one_hot_columns):
             one_hot_column_set += "'"
+            one_hot_column_set += column
+            if i != len(one_hot_columns) - 1:
+                one_hot_column_set += "', "
+            else:
+                one_hot_column_set += "'"
+
     json = {
         "codes":[
             "## 全データテーブルの作成",
