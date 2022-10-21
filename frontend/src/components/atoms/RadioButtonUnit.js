@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 export default function RadioButtonUnit({radio={}, num=0, checkedRadioNames=[], setCheckedRadoNames=f=>f}) {
-  const defaultCheckedRadioList = radio.selects.map(() => false);
+  var defaultCheckedRadioList = radio.selects.map(() => false);
+  defaultCheckedRadioList[0] = true;
   const [checkedRadioList, setCheckedRadioList] = useState(defaultCheckedRadioList);
 
   // 選択を１つに制限して、その一つのnameをFormUnitに送る
