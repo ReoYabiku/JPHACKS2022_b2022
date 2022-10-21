@@ -9,7 +9,6 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
   const [codes, setCodes] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  // TODO: オブジェクトから要素数を指定する
   const defaultCheckList = inputTexts.map(inputText => !inputText.checkboxExists);
   const [checkedList, setCheckedList] = useState(defaultCheckList);
 
