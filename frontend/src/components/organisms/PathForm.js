@@ -10,8 +10,16 @@ export default function PathForm() {
     "jupyterなどのノートブックに貼り付けて実行してください。"
   ];
   const inputTexts = [
-    {label: "trainファイルへの相対パス", value: "./data/train.csv", name: "train"},
-    {label: "testファイルへの相対パス", value: "./data/test.csv",name: "test"}
+    {
+      checkboxExists: false,
+      textExists: true,
+      text: {label: "trainファイルへの相対パス", value: "./data/train.csv", name: "train"}
+    },
+    {
+      checkboxExists: false,
+      textExists: true,
+      text: {label: "testファイルへの相対パス", value: "./data/test.csv",name: "test"}
+    }
   ];
 
   return (

@@ -54,34 +54,73 @@ def dataframe():
 @app.route("/preprocessing", methods=["POST"])
 def preprocessing():
     req = ast.literal_eval(request.get_data().decode('utf-8'))
-    normal_columns = re.split(', *', req["normalColumns"])
+
     normal_column_set = ""
-    for i, column in enumerate(normal_columns):
-        normal_column_set += "'"
-        normal_column_set += column
-        if i != len(normal_columns) - 1:
-            normal_column_set += "', "
-        else:
+    if req["normalColumnsExist"] == "true":
+        normal_columns = re.split(', *', req["normalColumns"])
+        # normal_column_set = ""
+        for i, column in enumerate(normal_columns):
             normal_column_set += "'"
-    one_hot_columns = re.split(', *', req["oneHotColumns"])
+            normal_column_set += column
+            if i != len(normal_columns) - 1:
+                normal_column_set += "', "
+            else:
+                normal_column_set += "'"
+
     one_hot_column_set = ""
-    for i, column in enumerate(one_hot_columns):
-        one_hot_column_set += "'"
-        one_hot_column_set += column
-        if i != len(one_hot_columns) - 1:
-            one_hot_column_set += "', "
-        else:
+    if req["oneHotColumnsExist"] == "true":
+        one_hot_columns = re.split(', *', req["oneHotColumns"])
+        # one_hot_column_set = ""
+        for i, column in enumerate(one_hot_columns):
             one_hot_column_set += "'"
+            one_hot_column_set += column
+            if i != len(one_hot_columns) - 1:
+                one_hot_column_set += "', "
+            else:
+                one_hot_column_set += "'"
+    
+    codes = []
+    if req["normalColumnsExist"] == "true" and req["oneHotColumnsExist"] == "false":
+        codes = [
+            "## カラムを限定する",
+            "df = df.loc[: ,[{}]]".format(normal_column_set),
+        ]
+    elif req["normalColumnsExist"] == "false" and req["oneHotColumnsExist"] == "true":
+        codes = [
+            "## one-hotエンコーディング",
+            "df = pd.get_dummies(df.loc[:, [{}]])".format(one_hot_column_set),
+        ]
+    elif req["normalColumnsExist"] == "true" and req["oneHotColumnsExist"] == "true":
+        codes = [
+            "## カラムの限定とone-hotエンコーディング",
+            "df_part = df_.loc[: ,[{}]]".format(normal_column_set),
+            "df_dummy = pd.get_dummies(df.loc[:, [{}]])".format(one_hot_column_set),
+            "df = pd.concat([df_part, df_dummy], axis=1)"
+        ]
+
     json = {
         "codes":[
             "## 全データテーブルの作成",
             "N_train = len(train)",
-            "df_all = pd.concat([train, test], axis=0)",
+            "df = pd.concat([train, test], axis=0)",
             "",
-            "## カラムの限定とone-hotエンコーディング",
-            "df_part = df_all.loc[: ,[{}]]".format(normal_column_set),
-            "df_dummy = pd.get_dummies(df_all.loc[:, [{}]])".format(one_hot_column_set),
-            "df = pd.concat([df_part, df_dummy], axis=1)"
+            *codes,
+        ]
+    }
+    return jsonify(json)
+
+@app.route("/visualize", methods=["POST"])
+def visualize():
+    json = {
+        "codes":[
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "",
+            "## 相関行列のヒートマップを作成",
+            "sns.heatmap(train.corr(),annot=True,cmap='bwr',linewidths=0.2) ",
+            "fig=plt.gcf()",
+            "fig.set_size_inches(10,8)",
+            "plt.show()"
         ]
     }
     return jsonify(json)
@@ -89,17 +128,31 @@ def preprocessing():
 @app.route("/model", methods=["POST"])
 def model():
     req = ast.literal_eval(request.get_data().decode('utf-8'))
+    
+    if req["model"] == "linerBinary":
+        model = [
+            "## LogisticRegressionによる学習",
+            "from sklearn.linear_model import LogisticRegression",
+            "clf = LogisticRegression(random_state=0).fit(X, target)",
+            "pred = pd.DataFrame(clf.predict(df[N_train:]), columns=['{}'])".format(req["target"])
+        ]
+    
+    if req["model"] == "lgbmBinary":
+        model = [
+            "## LightGBMを用いた学習",
+            "import lightgbm as lgbm",
+            "model = lgbm.LGBMClassifier()",
+            "model.fit(df[:N_train], target)",
+            "pred = pd.DataFrame(model.predict(df[N_train:]), columns=['{}'])".format(req["target"])
+        ]
+        
     json = {
         "codes":[
             "## 予測に使う列",
             "id = test.loc[:, ['{}']]".format(req["id"]),
             "target = train.loc[:, ['{}']]".format(req["target"]),
             "",
-            "## LightGBMを用いた学習",
-            "import lightgbm as lgbm",
-            "model = lgbm.LGBMClassifier()",
-            "model.fit(df[:N_train], target)",
-            "pred = pd.DataFrame(model.predict(df[N_train:]), columns=['{}'])".format(req["target"])
+            *model
         ]
     }
     return jsonify(json)
@@ -112,15 +165,6 @@ def predict():
             "## csvファイルの作成",
             "sub = pd.concat([id, pred], axis=1)",
             "sub.to_csv('{}', index=False)".format(req["submission"])
-        ]
-    }
-    return jsonify(json)
-
-@app.route("/tmp", methods=["POST"])
-def tmp():
-    json = {
-        "codes":[
-            "この機能はまだ利用できません。"
         ]
     }
     return jsonify(json)
