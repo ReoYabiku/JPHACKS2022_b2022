@@ -4,8 +4,8 @@ import CodeGerenateInterface from "./CodeGenerateInterface";
 export default function PreprocessingForm() {
   const step = {imgPath:"Services.png", num:3, value:"前処理"};
   const sentenses = [
-    "まだ機能不十分です。",
-    "学習に使用するカラムを指定してください。"
+    "学習に使用するカラムを指定してください。",
+    "そのまま利用するカラムと、one-hotエンコーディングするカラムをそれぞれ選択することができます。"
   ];
   const inputTexts = [
     {

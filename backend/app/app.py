@@ -113,12 +113,13 @@ def preprocessing():
 def visualize():
     json = {
         "codes":[
-            "## 相関行列のヒートマップを作成",
             "import matplotlib.pyplot as plt",
             "import seaborn as sns",
-            "sns.heatmap(df.corr(),annot=True,cmap='bwr',linewidths=0.2) ",
+            "",
+            "## 相関行列のヒートマップを作成",
+            "sns.heatmap(train.corr(),annot=True,cmap='bwr',linewidths=0.2) ",
             "fig=plt.gcf()",
-            "fig.set_size_inches(10,8)"
+            "fig.set_size_inches(10,8)",
             "plt.show()"
         ]
     }
