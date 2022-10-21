@@ -109,6 +109,22 @@ def preprocessing():
     }
     return jsonify(json)
 
+@app.route("/visualize", methods=["POST"])
+def visualize():
+    json = {
+        "codes":[
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "",
+            "## 相関行列のヒートマップを作成",
+            "sns.heatmap(train.corr(),annot=True,cmap='bwr',linewidths=0.2) ",
+            "fig=plt.gcf()",
+            "fig.set_size_inches(10,8)",
+            "plt.show()"
+        ]
+    }
+    return jsonify(json)
+
 @app.route("/model", methods=["POST"])
 def model():
     req = ast.literal_eval(request.get_data().decode('utf-8'))
@@ -135,15 +151,6 @@ def predict():
             "## csvファイルの作成",
             "sub = pd.concat([id, pred], axis=1)",
             "sub.to_csv('{}', index=False)".format(req["submission"])
-        ]
-    }
-    return jsonify(json)
-
-@app.route("/tmp", methods=["POST"])
-def tmp():
-    json = {
-        "codes":[
-            "この機能はまだ利用できません。"
         ]
     }
     return jsonify(json)
