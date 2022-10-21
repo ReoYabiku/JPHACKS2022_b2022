@@ -15,8 +15,8 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
 
   // 状態管理ではなく、送信データ管理用
   // 「１つだけがtrue」はRadioButtonUnitで制御する 
-  // const defaultCheckedRadioNames = inputTexts.map(() => "");
-  // const [checkedRadioNames, setCheckedRadoNames] = useState(defaultCheckedRadioNames);
+  const defaultCheckedRadioNames = inputTexts.map(() => "");
+  const [checkedRadioNames, setCheckedRadoNames] = useState(defaultCheckedRadioNames);
 
   const generate = e => {
     e.preventDefault();
@@ -24,6 +24,10 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
     const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, endpointPath);
     const json = {};
     inputTexts.forEach((inputText, i) => {
+      if (checkedRadioNames[i] !== "") {
+        json[inputText.radio.name] = checkedRadioNames[i];
+      }
+
       if (checkedList[i] && inputText.textExists) {
         json[inputText.text.name] = formElements[inputText.text.name].value;
       }
@@ -58,7 +62,7 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           inputTexts.map((inputText, i) => {
             return (
               <div key={i}>
-                {inputText.radioTitle !== undefined && <RadioButtonUnit title={inputText.radioTitle} radio={inputText.radio} />}
+                {inputText.radio !== undefined && <RadioButtonUnit radio={inputText.radio} num={i} checkedRadioNames={checkedRadioNames} setCheckedRadoNames={setCheckedRadoNames} />}
                 {inputText.checkboxExists && <CheckboxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
                 {checkedList[i] && inputText.textExists ?
                   <InputUnit

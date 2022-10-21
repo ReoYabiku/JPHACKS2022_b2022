@@ -112,17 +112,31 @@ def preprocessing():
 @app.route("/model", methods=["POST"])
 def model():
     req = ast.literal_eval(request.get_data().decode('utf-8'))
+    
+    if req["model"] == "linerBinary":
+        model = [
+            "## LogisticRegressionによる学習",
+            "from sklearn.linear_model import LogisticRegression",
+            "clf = LogisticRegression(random_state=0).fit(X, target)",
+            "pred = pd.DataFrame(clf.predict(df[N_train:]), columns=['{}'])".format(req["target"])
+        ]
+    
+    if req["model"] == "lgbmBinary":
+        model = [
+            "## LightGBMを用いた学習",
+            "import lightgbm as lgbm",
+            "model = lgbm.LGBMClassifier()",
+            "model.fit(df[:N_train], target)",
+            "pred = pd.DataFrame(model.predict(df[N_train:]), columns=['{}'])".format(req["target"])
+        ]
+        
     json = {
         "codes":[
             "## 予測に使う列",
             "id = test.loc[:, ['{}']]".format(req["id"]),
             "target = train.loc[:, ['{}']]".format(req["target"]),
             "",
-            "## LightGBMを用いた学習",
-            "import lightgbm as lgbm",
-            "model = lgbm.LGBMClassifier()",
-            "model.fit(df[:N_train], target)",
-            "pred = pd.DataFrame(model.predict(df[N_train:]), columns=['{}'])".format(req["target"])
+            *model
         ]
     }
     return jsonify(json)
