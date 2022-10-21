@@ -10,6 +10,15 @@ export default function ModelForm() {
   const inputTexts = [
     {
       checkboxExists: false,
+      textExists: false,
+      radioTitle: "学習に使用するモデル",
+      radio: [
+        {label: "LightGBMによる二値分類", name: "lgbmBinary"},
+        {label: "Logistic回帰による二値分類", name: "linerBinary"}
+      ]
+    },
+    {
+      checkboxExists: false,
       textExists: true,
       text: {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"}
     },

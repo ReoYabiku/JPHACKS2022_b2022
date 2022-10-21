@@ -3,6 +3,7 @@ import InputUnit from "../atoms/InputUnit";
 import "./FormUnit.css";
 import Modal from "../organisms/Modal";
 import CheckboxUnit from "../atoms/CheckboxUnit";
+import RadioButtonUnit from "../atoms/RadioButtonUnit";
 import urlJoin from "url-join";
 
 export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
@@ -11,6 +12,11 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
 
   const defaultCheckList = inputTexts.map(inputText => !inputText.checkboxExists);
   const [checkedList, setCheckedList] = useState(defaultCheckList);
+
+  // 状態管理ではなく、送信データ管理用
+  // 「１つだけがtrue」はRadioButtonUnitで制御する 
+  // const defaultCheckedRadioNames = inputTexts.map(() => "");
+  // const [checkedRadioNames, setCheckedRadoNames] = useState(defaultCheckedRadioNames);
 
   const generate = e => {
     e.preventDefault();
@@ -52,6 +58,7 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           inputTexts.map((inputText, i) => {
             return (
               <div key={i}>
+                {inputText.radioTitle !== undefined && <RadioButtonUnit title={inputText.radioTitle} radio={inputText.radio} />}
                 {inputText.checkboxExists && <CheckboxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
                 {checkedList[i] && inputText.textExists ?
                   <InputUnit
