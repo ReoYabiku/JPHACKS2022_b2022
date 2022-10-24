@@ -15,8 +15,11 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
 
   // 状態管理ではなく、送信データ管理用
   // 「１つだけがtrue」はRadioButtonUnitで制御する 
-  const defaultCheckedRadioNames = inputTexts.map(() => "");
-  const [checkedRadioNames, setCheckedRadoNames] = useState(defaultCheckedRadioNames);
+
+  // inputTestsをなめて、radioが存在するなら選択肢の一つ目（例えばlgbmBinary）を
+  // 格納するようなfor文を書く
+  const defaultCheckedRadioNames = ["lgbmBinary", ...Array(inputTexts.length - 1).fill("")];
+  const [checkedRadioNames, setCheckedRadioNames] = useState(defaultCheckedRadioNames);
 
   const generate = e => {
     e.preventDefault();
@@ -62,7 +65,7 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
           inputTexts.map((inputText, i) => {
             return (
               <div key={i}>
-                {inputText.radio !== undefined && <RadioButtonUnit radio={inputText.radio} num={i} checkedRadioNames={checkedRadioNames} setCheckedRadoNames={setCheckedRadoNames} />}
+                {inputText.radio !== undefined && <RadioButtonUnit radio={inputText.radio} num={i} checkedRadioNames={checkedRadioNames} setCheckedRadioNames={setCheckedRadioNames} />}
                 {inputText.checkboxExists && <CheckboxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
                 {checkedList[i] && inputText.textExists ?
                   <InputUnit

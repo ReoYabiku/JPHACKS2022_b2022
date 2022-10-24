@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-export default function RadioButtonUnit({radio={}, num=0, checkedRadioNames=[], setCheckedRadoNames=f=>f}) {
-  var defaultCheckedRadioList = radio.selects.map(() => false);
-  defaultCheckedRadioList[0] = true;
+export default function RadioButtonUnit({radio={}, num=0, checkedRadioNames=[], setCheckedRadioNames=f=>f}) {
+  // var arr = [true];
+  // var defaultCheckedRadioList = [...arr.fill(false, 1, radio.selects.length)];
+  const defaultCheckedRadioList = [true, ...Array(radio.selects.length - 1).fill(false)];
   const [checkedRadioList, setCheckedRadioList] = useState(defaultCheckedRadioList);
 
   // 選択を１つに制限して、その一つのnameをFormUnitに送る
@@ -11,7 +12,7 @@ export default function RadioButtonUnit({radio={}, num=0, checkedRadioNames=[], 
     checkedRadios.splice(e.target.id, 1, e.target.checked);
     setCheckedRadioList(checkedRadios);
     checkedRadioNames.splice(num, 1, radio.selects[e.target.id].name);
-    setCheckedRadoNames(checkedRadioNames);
+    setCheckedRadioNames(checkedRadioNames);
   };
 
   return (
