@@ -15,10 +15,13 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
 
   // 状態管理ではなく、送信データ管理用
   // 「１つだけがtrue」はRadioButtonUnitで制御する 
-
-  // inputTestsをなめて、radioが存在するなら選択肢の一つ目（例えばlgbmBinary）を
-  // 格納するようなfor文を書く
-  const defaultCheckedRadioNames = ["lgbmBinary", ...Array(inputTexts.length - 1).fill("")];
+  const defaultCheckedRadioNames = inputTexts.map(inputText => {
+    if (inputText.radio !== undefined) {
+      return inputText.radio.selects[0].name;
+    } else {
+      return "";
+    }
+  });
   const [checkedRadioNames, setCheckedRadioNames] = useState(defaultCheckedRadioNames);
 
   const generate = e => {

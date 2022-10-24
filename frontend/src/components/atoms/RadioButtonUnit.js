@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 export default function RadioButtonUnit({radio={}, num=0, checkedRadioNames=[], setCheckedRadioNames=f=>f}) {
-  // var arr = [true];
-  // var defaultCheckedRadioList = [...arr.fill(false, 1, radio.selects.length)];
   const defaultCheckedRadioList = [true, ...Array(radio.selects.length - 1).fill(false)];
   const [checkedRadioList, setCheckedRadioList] = useState(defaultCheckedRadioList);
 
