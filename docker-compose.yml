@@ -12,11 +12,11 @@ services:
   front:
     build:
       context: .
-      dockerfile: ./frontend/Dockerfile
+      dockerfile: ./frontend_ts/Dockerfile
     ports:
       - 3000:3000
     volumes:
-      - ./frontend:/usr/src/frontend
+      - ./frontend_ts:/usr/src/frontend
     command: npm start
     environment:
       - CHOKIDAR_USEPOLLING=true

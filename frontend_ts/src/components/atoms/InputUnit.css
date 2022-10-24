@@ -1,0 +1,15 @@
+.input-unit {
+  margin-top: 5px;
+}
+
+.text-label {
+  font-size: 13px;
+  margin: 0;
+}
+
+.text-box {
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+}

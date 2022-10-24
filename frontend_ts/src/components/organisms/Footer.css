@@ -1,0 +1,29 @@
+.footer-container {
+  width: 100%;
+  height: 240px;
+  background-color: #2FAC9E;
+}
+
+.footer-main {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  padding: 0 100px;
+}
+
+.footer-links {
+  padding: 0 100px;
+}
+
+.footer-sns {
+  padding: 10px 100px;
+}
+
+.footer-copy-right {
+  padding: 0 100px;
+  color: white;
+  font-size: 10px;
+}

@@ -1,0 +1,10 @@
+.step-container {
+  width: 30%;
+  margin: 10px 15%;
+  padding: 10px;
+  
+  border: 2px solid black;
+  border-radius: 10px;
+  vertical-align: middle;
+  text-decoration: none;
+}
