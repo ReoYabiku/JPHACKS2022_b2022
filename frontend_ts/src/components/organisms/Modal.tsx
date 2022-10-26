@@ -3,11 +3,11 @@ import DeleteButtonRightside from "../atoms/DeleteButtonRightside";
 import CopyButton from "../atoms/CopyButton";
 import "./Modal.css";
 
-interface Props {
+type Props =  {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   codes: string[];
-}
+};
 
 const Modal: React.FC<Props> = (props) =>  {
   const removeModal = () => {

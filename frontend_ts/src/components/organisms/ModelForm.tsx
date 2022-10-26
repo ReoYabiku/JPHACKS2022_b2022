@@ -1,16 +1,15 @@
 import React from "react";
+import CodeInfo from "../../classdef";
 import CodeGerenateInterface from "./CodeGenerateInterface";
 
-export default function ModelForm() {
+const ModelForm: React.FC = () => {
   const step = {imgPath:"MachineLearning.png", num:4, value:"機械学習モデルの構築・学習"};
   const sentenses = [
     "学習を実行するコードを生成します。",
     "学習に使用するモデル、提出ファイルの主キーと予測するカラムを入力してください。"
   ];
-  const inputTexts = [
+  const codeInfos: CodeInfo[] = [
     {
-      checkboxExists: false,
-      textExists: false,
       radio: {
         title: "学習に使用するモデル",
         name: "model",
@@ -21,14 +20,10 @@ export default function ModelForm() {
       }
     },
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"}
+      inputText: {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"}
     },
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "予測するカラムの名前", value: "Survived",name: "target"}
+      inputText: {label: "予測するカラムの名前", value: "Survived",name: "target"}
     }
   ];
 
@@ -38,9 +33,11 @@ export default function ModelForm() {
       num={step.num}
       value={step.value}
       sentenses={sentenses}
-      inputTexts={inputTexts}
+      inputTexts={codeInfos}
       nextPath="/predict"
       endpointPath="model"
     />
   );
 }
+
+export default ModelForm;

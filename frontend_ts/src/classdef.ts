@@ -1,21 +1,31 @@
-interface RadioSelect {
+import { type } from "os";
+
+export type RadioSelect = {
   label: string;
   name: string;
-}
+};
 
-interface Radio {
+export type Radio = {
   title: string;
   name: string;
   selects: RadioSelect[];
-}
+};
 
+export type Checkbox = {
+  label: string;
+  name: string;
+};
 
-// TODO: InputTextの名前を考え直す
-// Text型は既に存在するので、良い感じの名前にする
-// 今なら書き直せる！！！
-export interface InputText {
-  checkboxExists: boolean;
-  textExists: boolean;
+export type InputText = {
+  label: string;
+  value: string;
+  name: string;
+};
+
+type CodeInfo = {
   radio?: Radio;
-  text?: Text;
-}
+  checkbox?: Checkbox;
+  inputText?: InputText;
+};
+
+export default CodeInfo;

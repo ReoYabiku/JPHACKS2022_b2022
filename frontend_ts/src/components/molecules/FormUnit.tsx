@@ -4,42 +4,44 @@ import "./FormUnit.css";
 import Modal from "../organisms/Modal";
 import CheckboxUnit from "../atoms/CheckboxUnit";
 import RadioButtonUnit from "../atoms/RadioButtonUnit";
-import urlJoin from "url-join-ts";
+import { urlJoin } from "url-join-ts";
+import CodeInfo from "../../classdef";
 
-export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""}) {
+type Props = {
+  codeInfos: CodeInfo[];
+  submitValue: string;
+  endpointPath: string;
+};
+
+const FormUnit: React.FC<Props> =  (props) => {
   const [codes, setCodes] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  const defaultCheckList = inputTexts.map(inputText => !inputText.checkboxExists);
-  const [checkedList, setCheckedList] = useState(defaultCheckList);
+  // codeInfos.length個の要素を持つ配列 => trueならテキスト入力欄を表示する
+  const defaultInputUnitFlags = Array<boolean>(props.codeInfos.length).fill(false);
+  const [showInputUnits, setShowInputUnits] = useState(defaultInputUnitFlags);
 
-  // 状態管理ではなく、送信データ管理用
-  // 「１つだけがtrue」はRadioButtonUnitで制御する 
-  const defaultCheckedRadioNames = inputTexts.map(inputText => {
-    if (inputText.radio !== undefined) {
-      return inputText.radio.selects[0].name;
-    } else {
-      return "";
-    }
-  });
+  // ラジオボタンからは一つしか選択できない
+  // 選択された項目のnameを保持する配列（ラジオボタンでなければ、falseを格納する）
+  const defaultCheckedRadioNames: (string)[] = props.codeInfos.map(codeInfo => codeInfo?.radio ? codeInfo.radio.selects[0].name : "");
   const [checkedRadioNames, setCheckedRadioNames] = useState(defaultCheckedRadioNames);
 
-  const generate = e => {
+  const generate = (e: Event) => {
     e.preventDefault();
-    const formElements = document.forms[endpointPath];
-    const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, endpointPath);
-    const json = {};
-    inputTexts.forEach((inputText, i) => {
-      if (checkedRadioNames[i] !== "") {
-        json[inputText.radio.name] = checkedRadioNames[i];
+    const formElements: Element = document.forms[0];
+    const endpoint: string = urlJoin(process.env.REACT_APP_BACKEND_URL, props.endpointPath);
+    const json: {[key: string]: string} = {};
+    props.codeInfos.forEach((codeInfo, i) => {
+      if (checkedRadioNames[i]) {
+        json[codeInfo.radio!.name] = checkedRadioNames[i];
       }
 
-      if (checkedList[i] && inputText.textExists) {
+      if (showInputUnits[i] && inputText.textExists) {
         json[inputText.text.name] = formElements[inputText.text.name].value;
       }
 
       if (inputText.checkboxExists){
-        if(checkedList[i] && inputText.textExists){
+        if(showInputUnits[i] && inputText.textExists){
           json[inputText.checkbox.name] = "true";
         } else {
           json[inputText.checkbox.name] = "false";
@@ -69,8 +71,8 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
             return (
               <div key={i}>
                 {inputText.radio !== undefined && <RadioButtonUnit radio={inputText.radio} num={i} checkedRadioNames={checkedRadioNames} setCheckedRadioNames={setCheckedRadioNames} />}
-                {inputText.checkboxExists && <CheckboxUnit id={i} checkedList={checkedList} labelText={inputText.checkbox.label} setCheckedList={setCheckedList} />}
-                {checkedList[i] && inputText.textExists ?
+                {inputText.checkboxExists && <CheckboxUnit id={i} showInputUnits={showInputUnits} labelText={inputText.checkbox.label} setShowInputUnits={setShowInputUnits} />}
+                {showInputUnits[i] ?
                   <InputUnit
                     name={inputText.text.name}
                     label={inputText.text.label}
@@ -91,3 +93,5 @@ export default function FormUnit({inputTexts=[], submitValue="", endpointPath=""
     </>
   );
 }
+
+export default FormUnit;

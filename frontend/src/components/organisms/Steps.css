@@ -1,9 +1,0 @@
-.step-left {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.step-right {
-  display: flex;
-  justify-content: flex-end;
-}

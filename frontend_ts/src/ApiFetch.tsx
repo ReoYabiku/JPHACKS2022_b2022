@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { urlJoin } from "url-join-ts";
 
 type Post ={
 	id: number
@@ -8,11 +9,11 @@ type Post ={
 export default function ApiFetch() {
 	const [posts, setPosts] = useState<Post[]>([]);
 
-	// 型の宣言方法がわからない
-	// process.env.REACT_APP_BACKEND_URL
-
+	
 	useEffect(() => {
-		fetch('localhost:5000', {method: 'GET'})
+		// 型変更のためだけにurlJoinを使ってもいいの？
+		const endpoint: string = urlJoin(process.env.REACT_APP_BACKEND_URL);
+		fetch(endpoint, {method: 'GET'})
 		.then(res => res.json())
 		.then(data => {
 			setPosts(data)
