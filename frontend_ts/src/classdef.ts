@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export type RadioSelect = {
   label: string;
   name: string;

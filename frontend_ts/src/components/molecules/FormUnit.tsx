@@ -43,7 +43,7 @@ const FormUnit: React.FC<Props> =  (props) => {
       if (showInputUnits[i]) {
         // FIX: 右辺の最後、nodeValueかも
         // FIX: formElementsはeでいいかもしれない（名前は変えるけど）
-        json[codeInfo.inputText!.name] = formElements[codeInfo.inputText!.name].value;
+        json[codeInfo.inputText!.name] = formElements[codeInfo.inputText!.name].nodeValue!;
       }
 
       if (codeInfo?.checkbox){

@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import {
   Home, Top, Api,
@@ -10,9 +11,9 @@ import Footer from './components/organisms/Footer';
 import About from './components/organisms/About';
 import FAQ from './components/organisms/FAQ';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,8 +33,8 @@ function App() {
         <Route path="generate" element={<GenButton />}/>
       </Routes>
       <Footer />
-    </div>
+    </>
   );
-}
+};
 
 export default App;

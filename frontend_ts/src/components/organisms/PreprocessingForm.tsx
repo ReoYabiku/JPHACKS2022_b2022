@@ -1,6 +1,6 @@
 import React from "react";
 import CodeGerenateInterface from "./CodeGenerateInterface";
-import CodeInfo, { Radio } from "../../classdef";
+import CodeInfo from "../../classdef";
 
 export default function PreprocessingForm() {
   const step = {imgPath:"Services.png", num:3, value:"前処理"};
