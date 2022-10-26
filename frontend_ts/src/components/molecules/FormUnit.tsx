@@ -22,34 +22,40 @@ const FormUnit: React.FC<Props> =  (props) => {
   const [showInputUnits, setShowInputUnits] = useState(defaultInputUnitFlags);
 
   // ラジオボタンからは一つしか選択できない
-  // 選択された項目のnameを保持する配列（ラジオボタンでなければ、falseを格納する）
+  // 選択された項目のnameを保持する配列（ラジオボタンでなければ、""を格納する）
   const defaultCheckedRadioNames: (string)[] = props.codeInfos.map(codeInfo => codeInfo?.radio ? codeInfo.radio.selects[0].name : "");
   const [checkedRadioNames, setCheckedRadioNames] = useState(defaultCheckedRadioNames);
 
-  const generate = (e: Event) => {
+  const generate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formElements: Element = document.forms[0];
+    // Elementはnumberのみを添え字に持つのに対して
+    // HTMLFormElementはnumberとstringを添え字に持つことができる
+    const formElements: HTMLFormElement = document.forms[0];
     const endpoint: string = urlJoin(process.env.REACT_APP_BACKEND_URL, props.endpointPath);
     const json: {[key: string]: string} = {};
     props.codeInfos.forEach((codeInfo, i) => {
       if (checkedRadioNames[i]) {
+        // 右辺の値をformelementsから取得できる？
+        // checkedRadioNamesをbooleanで管理できるかもしれない
         json[codeInfo.radio!.name] = checkedRadioNames[i];
       }
 
-      if (showInputUnits[i] && inputText.textExists) {
-        json[inputText.text.name] = formElements[inputText.text.name].value;
+      if (showInputUnits[i]) {
+        // FIX: 右辺の最後、nodeValueかも
+        // FIX: formElementsはeでいいかもしれない（名前は変えるけど）
+        json[codeInfo.inputText!.name] = formElements[codeInfo.inputText!.name].value;
       }
 
-      if (inputText.checkboxExists){
-        if(showInputUnits[i] && inputText.textExists){
-          json[inputText.checkbox.name] = "true";
+      if (codeInfo?.checkbox){
+        if(showInputUnits[i]){
+          json[codeInfo?.checkbox.name] = "true";
         } else {
-          json[inputText.checkbox.name] = "false";
+          json[codeInfo?.checkbox.name] = "false";
         }
       }
       
     });
-    const requestOptions = {
+    const requestOptions: RequestInit = {
       method: "POST",
       referrerPolicy: 'no-referrer',
       body: JSON.stringify(json)
@@ -64,19 +70,19 @@ const FormUnit: React.FC<Props> =  (props) => {
 
   return (
     <>
-      <form className="form-unit" name={endpointPath} onSubmit={generate}>
+      <form className="form-unit" name={props.endpointPath} onSubmit={generate}>
         <div className="form-content">
           {
-          inputTexts.map((inputText, i) => {
+          props.codeInfos.map((codeInfo, i) => {
             return (
               <div key={i}>
-                {inputText.radio !== undefined && <RadioButtonUnit radio={inputText.radio} num={i} checkedRadioNames={checkedRadioNames} setCheckedRadioNames={setCheckedRadioNames} />}
-                {inputText.checkboxExists && <CheckboxUnit id={i} showInputUnits={showInputUnits} labelText={inputText.checkbox.label} setShowInputUnits={setShowInputUnits} />}
+                {codeInfo?.radio !== undefined && <RadioButtonUnit radio={codeInfo?.radio} num={i} checkedRadioNames={checkedRadioNames} setCheckedRadioNames={setCheckedRadioNames} />}
+                {codeInfo?.checkbox && <CheckboxUnit id={i} checkedList={showInputUnits} labelText={codeInfo?.checkbox.label} setCheckedList={setShowInputUnits} />}
                 {showInputUnits[i] ?
                   <InputUnit
-                    name={inputText.text.name}
-                    label={inputText.text.label}
-                    value={inputText.text.value}
+                    name={codeInfo?.inputText!.name}
+                    label={codeInfo?.inputText!.label}
+                    value={codeInfo?.inputText!.value}
                   /> :
                   <></>
                 }
@@ -86,7 +92,7 @@ const FormUnit: React.FC<Props> =  (props) => {
           }
         </div>
         <div className="submit-button-wrapper">
-          <input type={"submit"} value={submitValue} className="submit-button"></input>
+          <input type={"submit"} value={props.submitValue} className="submit-button"></input>
         </div>
       </form>
       <Modal showModal={showModal} setShowModal={setShowModal} codes={codes} />
