@@ -33,7 +33,7 @@ const FormUnit: React.FC<Props> = (props) => {
     e.preventDefault();
     const formElements: HTMLFormElement = document.forms[0];
     // process.env.REACT_APP_BACKEND_URL
-    const endpoint = urlJoin('http://localhost:5000', props.endpointPath);
+    const endpoint = urlJoin(process.env.REACT_APP_BACKEND_URL, props.endpointPath);
     const json: {[key: string]: string} = {};
     props.codeInfos.forEach((codeInfo, i) => {
       if (checkedRadioNames[i]) {

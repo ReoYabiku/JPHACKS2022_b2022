@@ -18,7 +18,9 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = [
     navigator.clipboard.writeText(codes.join("\n"));
     document.getElementsByClassName("notifyCopy")[0].style.display = "block";
     setTimeout(() => {
-      document.getElementsByClassName("notifyCopy")[0].style.display = "none";
+      if (document.getElementsByClassName("notifyCopy")[0]) {
+        document.getElementsByClassName("notifyCopy")[0].style.display = "none";
+      }
     }, 1000);
   };
   
