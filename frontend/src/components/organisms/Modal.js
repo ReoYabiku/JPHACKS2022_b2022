@@ -3,7 +3,7 @@ import DeleteButtonRightside from "../atoms/DeleteButtonRightside";
 import CopyButton from "../atoms/CopyButton";
 import "./Modal.css";
 
-export default function Modal({showModal = true, setShowModal= f => f, codes = f => f}) {
+export default function Modal({showModal = true, setShowModal= f => f, codes = []}) {
   const removeModal = () => {
     setShowModal(false);
   };
@@ -18,7 +18,9 @@ export default function Modal({showModal = true, setShowModal= f => f, codes = f
     navigator.clipboard.writeText(codes.join("\n"));
     document.getElementsByClassName("notifyCopy")[0].style.display = "block";
     setTimeout(() => {
-      document.getElementsByClassName("notifyCopy")[0].style.display = "none";
+      if (document.getElementsByClassName("notifyCopy")[0]) {
+        document.getElementsByClassName("notifyCopy")[0].style.display = "none";
+      }
     }, 1000);
   };
   

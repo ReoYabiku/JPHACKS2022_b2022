@@ -7,11 +7,9 @@ export default function PredictForm() {
     "最後に、予測した結果をCSVファイルとして出力します。",
     "CSVファイルを出力するパスを指定してください。"
   ];
-  const inputTexts = [
+  const codeInfos = [
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "提出ファイルのパス", value: "./submission/lgbm.csv", name: "submission"}
+      inputText: {label: "提出ファイルのパス", value: "./submission/lgbm.csv", name: "submission"}
     }
   ];
 
@@ -21,7 +19,7 @@ export default function PredictForm() {
       num={step.num}
       value={step.value}
       sentenses={sentenses}
-      inputTexts={inputTexts}
+      codeInfos={codeInfos}
       nextPath="/"
       endpointPath="predict"
     />
