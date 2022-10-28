@@ -9,16 +9,12 @@ export default function PathForm() {
     "「コードを生成」ボタンを押すと、指定したデータを取得するコードが表示されます。",
     "jupyterなどのノートブックに貼り付けて実行してください。"
   ];
-  const inputTexts = [
+  const codeInfos = [
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "trainファイルへの相対パス", value: "./data/train.csv", name: "train"}
+      inputText: {label: "trainファイルへの相対パス", value: "./data/train.csv", name: "train"}
     },
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "testファイルへの相対パス", value: "./data/test.csv",name: "test"}
+      inputText: {label: "testファイルへの相対パス", value: "./data/test.csv",name: "test"}
     }
   ];
 
@@ -28,7 +24,7 @@ export default function PathForm() {
       num={step.num}
       value={step.value}
       sentenses={sentenses}
-      inputTexts={inputTexts}
+      codeInfos={codeInfos}
       nextPath="/visualize"
       endpointPath="dataframe"
     />

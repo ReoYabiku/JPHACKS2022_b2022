@@ -8,11 +8,8 @@ export default function VisualizeForm() {
     "相関行列とは各成分に対応する相関係数を並べた行列のことであり、値の大小に応じて色をつけたものをヒートマップと呼びます。",
     "この図を表示することによって、変数間の相関の強さを一目で把握することができます"
   ];
-  const inputTexts = [
-    {
-      checkboxExists: false,
-      textExists: false,
-    },
+  const codeInfos = [
+    {}
   ];
 
   return (
@@ -21,7 +18,7 @@ export default function VisualizeForm() {
       num={step.num}
       value={step.value}
       sentenses={sentenses}
-      inputTexts={inputTexts}
+      codeInfos={codeInfos}
       nextPath="/preprocessing"
       endpointPath="visualize"
     />

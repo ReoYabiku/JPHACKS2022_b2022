@@ -7,10 +7,8 @@ export default function ModelForm() {
     "学習を実行するコードを生成します。",
     "学習に使用するモデル、提出ファイルの主キーと予測するカラムを入力してください。"
   ];
-  const inputTexts = [
+  const codeInfos = [
     {
-      checkboxExists: false,
-      textExists: false,
       radio: {
         title: "学習に使用するモデル",
         name: "model",
@@ -21,14 +19,10 @@ export default function ModelForm() {
       }
     },
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"}
+      inputText: {label: "提出ファイルの主キー名", value: "PassengerId", name: "id"}
     },
     {
-      checkboxExists: false,
-      textExists: true,
-      text: {label: "予測するカラムの名前", value: "Survived",name: "target"}
+      inputText: {label: "予測するカラムの名前", value: "Survived",name: "target"}
     }
   ];
 
@@ -38,7 +32,7 @@ export default function ModelForm() {
       num={step.num}
       value={step.value}
       sentenses={sentenses}
-      inputTexts={inputTexts}
+      codeInfos={codeInfos}
       nextPath="/predict"
       endpointPath="model"
     />
