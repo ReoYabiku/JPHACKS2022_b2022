@@ -9,13 +9,13 @@ JPHACKSに向けて開発中の初心者向け機械学習コード生成ツー�
 1. docker compose build --no-cache --force-recreate
 1. docker compose up
 
-- バックエンドは5000ポート、フロントエンドは3000ポートからアクセスできる。
+- バックエンドは8000ポート、フロントエンドは3000ポートからアクセスできる。
 
 ## Environment Variables
 1. ./frontend内に.env.localを作成する
 1. 以下を書き込む
 ```
-REACT_APP_BACKEND_URL = 'http://localhost:5000'
+REACT_APP_BACKEND_URL = 'http://localhost:8000'
 ```
 
 ## production

@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     ports:
-      - 5000:5000
+      - 8000:5000
     volumes:
       - ./backend/app:/usr/src/app
     command: flask run --host=0.0.0.0 --debugger --reload
